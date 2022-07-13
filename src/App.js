@@ -71,7 +71,7 @@ function App() {
             disabled={loading || currentUser != null}
             onClick={handleSignup}
          >
-            Sign In
+            Sign Up
          </button>
          <button
             disabled={loading || currentUser != null}
