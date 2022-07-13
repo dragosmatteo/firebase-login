@@ -1,6 +1,13 @@
-import { signup, useAuth, logout, login } from "./firebase";
+import {
+   signup,
+   useAuth,
+   logout,
+   login,
+   AuthContextProvider,
+} from "./firebase";
 import "./App.css";
 import { useRef, useState } from "react";
+import GoogleButton from "react-google-button";
 
 function App() {
    const [loading, setLoading] = useState(false);
@@ -37,6 +44,15 @@ function App() {
       setLoading(false);
    }
 
+   async function google() {
+      setLoading(true);
+      try {
+         await AuthContextProvider();
+      } catch {
+         console.log("Error");
+      }
+   }
+
    return (
       <form className="main">
          <h3>Current user is : {currentUser?.email}</h3>
@@ -66,6 +82,8 @@ function App() {
          <button disabled={loading} onClick={handleLogout}>
             Log Out
          </button>
+
+         <GoogleButton style={{ marginTop: "10px" }} onClick={google} />
       </form>
    );
 }
